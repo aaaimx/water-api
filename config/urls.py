@@ -53,7 +53,7 @@ router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
 router.register(r'states', StateViewSet)
-router.register(r'crop_consults', CropProductViewSet)
+router.register(r'crop_products', CropProductViewSet)
 
 auth_urlpatterns = [
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
