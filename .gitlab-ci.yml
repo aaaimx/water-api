@@ -19,7 +19,7 @@ build:
     - amazon-linux-extras install docker
     - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY
   script:
-    - cp /builds/practices4471311/capstone-project-q12023.tmp/ENV_FILE ./.env
+    - cp /builds/d8494/water-api.tmp/ENV_FILE ./.env
     - cat .env
     - ls -la
     - docker build --pull -t $CONTAINER_RELEASE_IMAGE . 
