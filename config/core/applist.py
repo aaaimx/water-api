@@ -25,7 +25,8 @@ LOCAL_APPS = [
     'apps.accounts',
     'apps.states',
     'apps.crop_products',
-    'apps.classification'
+    'apps.classification',
+    'apps.consults'
 ]
 
 INSTALLED_APPS = BEFORE_DJANGO_APPS + DJANGO_APPS + THIRD_PART_APPS + LOCAL_APPS

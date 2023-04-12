@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import PredictionClassification, RealClassification
+from .models import PredictionClassification, RealClassification, ConsultClassification
 
 class PCSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,4 +9,9 @@ class PCSerializer(serializers.ModelSerializer):
 class RCSerializer(serializers.ModelSerializer):
     class Meta:
         model = RealClassification
+        fields = '__all__'
+
+class CCSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ConsultClassification
         fields = '__all__'

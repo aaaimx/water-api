@@ -9,3 +9,4 @@ class CropProductSerializer(serializers.ModelSerializer):
 class SuministryTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = SuministryType
+        fields = '__all__'
