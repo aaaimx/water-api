@@ -82,6 +82,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Celery
+
+CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL')
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
