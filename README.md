@@ -1,4 +1,4 @@
-# base template django
+# Water.IA API V0.1
 
 ## Features
 
@@ -16,11 +16,12 @@
 
 - Python 3.7>
 - Virtualenv
+
 ## Instalation
 
-    $ python3 -m venv venv
-    $ source venv/bin/activate
-    $ pip install -r requirements.txt
+    $python3 -m venv venv
+    $source venv/bin/activate
+    $pip install -r requirements.txt
 
 ## Environment
 
@@ -30,36 +31,36 @@ Application running in multiple environments like DEV and PROD. All env variable
 
 Just make a copy from `.env.local.example` and/or rename to `.env.local` and setup your variables. Then run in terminal:
 
-    $ source .env.local
+    $source .env.local
 
 The first time you run the application, make sure to apply the database migrations and create a super user account:
 
-    $ python manage.py migrate
-    $ python manage.py createsuperuser
+    $python manage.py migrate
+    $python manage.py createsuperuser
 
 Finally start development server:
 
-    $ python manage.py runserver
+    $python manage.py runserver
 
 ### PROD
 
 Just make a copy from `.env.production.example` and/or rename to `.env.production` and setup your variables. Then run in terminal:
 
-    $ source .env.production
+    $source .env.production
 
 The first time you run the application, make sure to apply the database migrations, create a super user account and generate static files:
 
-    $ python manage.py migrate
-    $ python manage.py createsuperuser
-    $ python manage.py collectstatic --no-input
+    $python manage.py migrate
+    $python manage.py createsuperuser
+    $python manage.py collectstatic --no-input
 
 Finally start production server:
 
-    $ gunicorn project.wsgi --log-level=INFO
+    $gunicorn project.wsgi --log-level=INFO
 
 ## Run tests
 
-    $ python manage.py test
+    $python manage.py test
 
 ## License
 

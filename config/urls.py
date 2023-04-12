@@ -28,6 +28,9 @@ from rest_framework_simplejwt.views import (
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
+from apps.states.views import *
+from apps.crop_products.views import *
+
 admin.site.site_header = "BASE Admin"
 admin.site.site_title = "BASE Admin Portal"
 admin.site.index_title = "Welcome to BASE Administration Portal"
@@ -49,6 +52,8 @@ schema_view = get_schema_view(
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
+router.register(r'states', StateViewSet)
+router.register(r'crop_consults', CropProductViewSet)
 
 auth_urlpatterns = [
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

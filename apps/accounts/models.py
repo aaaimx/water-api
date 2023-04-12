@@ -9,12 +9,15 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from .managers import UserManager
+from apps.states.models import State
 
 
 class User(AbstractUser):
 
+    user_state = models.ForeignKey(State, on_delete=models.CASCADE, null=True)
+
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email']
+    REQUIRED_FIELDS = ['email', 'user_state']
 
     objects = UserManager()
 
