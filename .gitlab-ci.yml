@@ -4,9 +4,9 @@ stages:
 services:
   - docker:dind
 variables:
-  APP_NAME: testing-ecr
+  APP_NAME: aaaimx-ecr
   DOCKER_HOST: tcp://docker:2375
-  DOCKER_REGISTRY: 958282338412.dkr.ecr.ca-central-1.amazonaws.com
+  DOCKER_REGISTRY: 066408755375.dkr.ecr.us-west-1.amazonaws.com
   DOCKER_TLS_CERTDIR: ""
   CONTAINER_RELEASE_IMAGE: $DOCKER_REGISTRY/$APP_NAME:$CI_COMMIT_SHA
 
