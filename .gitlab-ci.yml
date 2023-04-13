@@ -1,0 +1,44 @@
+stages:
+  - build
+  - deploy
+services:
+  - docker:dind
+variables:
+  APP_NAME: aaaimx-ecr
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_REGISTRY: 066408755375.dkr.ecr.us-west-1.amazonaws.com
+  DOCKER_TLS_CERTDIR: ""
+  CONTAINER_RELEASE_IMAGE: $DOCKER_REGISTRY/$APP_NAME:$CI_COMMIT_SHA
+
+build:
+  stage: build
+  image: 
+    name: amazon/aws-cli
+    entrypoint: [""]
+  before_script:
+    - amazon-linux-extras install docker
+    - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY
+  script:
+    - cp /builds/d8494/water-api.tmp/ENV_FILE ./.env
+    - docker build --pull -t $CONTAINER_RELEASE_IMAGE . 
+    - docker push $CONTAINER_RELEASE_IMAGE
+  only:
+    - main
+
+deploy:
+  stage: deploy
+  image: 
+    name: amazon/aws-cli
+    entrypoint: [""]
+  before_script:
+    -  yum install -y jq curl
+  script:
+    - echo $CONTAINER_RELEASE_IMAGE
+    - TASK_DEFINITION=$(aws ecs describe-task-definition --task-definition "$CI_AWS_ECS_TASK_DEFINITION" --region "${AWS_DEFAULT_REGION}")
+    - NEW_CONTAINER_DEFINTIION=$(echo $TASK_DEFINITION | jq --arg IMAGE "$CONTAINER_RELEASE_IMAGE" '.taskDefinition.containerDefinitions[0].image = $IMAGE | .taskDefinition.containerDefinitions[0]')
+    - echo "Registering new container definition..."
+    - aws ecs register-task-definition --region "${AWS_DEFAULT_REGION}" --family "${CI_AWS_ECS_TASK_DEFINITION}" --container-definitions "${NEW_CONTAINER_DEFINTIION}"
+    - echo "Updating the service..."
+    - aws ecs update-service --force-new-deploy --region "${AWS_DEFAULT_REGION}" --cluster "${CI_AWS_ECS_CLUSTER}" --service "${CI_AWS_ECS_SERVICE}"  --task-definition "${CI_AWS_ECS_TASK_DEFINITION}"
+  only:
+    - main
