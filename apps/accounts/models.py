@@ -17,7 +17,7 @@ class User(AbstractUser):
     user_state = models.ForeignKey(State, on_delete=models.CASCADE, null=True)
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email', 'user_state']
+    REQUIRED_FIELDS = ['email']
 
     objects = UserManager()
 
