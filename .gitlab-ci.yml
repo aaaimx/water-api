@@ -20,8 +20,6 @@ build:
     - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY
   script:
     - cp /builds/d8494/water-api.tmp/ENV_FILE ./.env
-    - cat .env
-    - ls -la
     - docker build --pull -t $CONTAINER_RELEASE_IMAGE . 
     - docker push $CONTAINER_RELEASE_IMAGE
   only:
