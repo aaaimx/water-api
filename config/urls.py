@@ -31,19 +31,18 @@ from drf_yasg import openapi
 from apps.states.views import *
 from apps.crop_products.views import *
 
-admin.site.site_header = "BASE Admin"
-admin.site.site_title = "BASE Admin Portal"
-admin.site.index_title = "Welcome to BASE Administration Portal"
+admin.site.site_header = "Water.AI API"
+admin.site.site_title = "Water.AI API Portal"
+admin.site.index_title = "Welcome to Water.AI Administration Portal"
 admin.site.site_url = "/api/v1/"
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="BASE API",
+        title="Water.AI",
         default_version='v1.0.0',
-        description="API REST para el sistema de BASE",
+        description="API REST para el sistema de Water.AI",
         terms_of_service="",
-        contact=openapi.Contact(email="admin@gmail.com"),
-        license=openapi.License(name="MIT License"),
+        contact=openapi.Contact(email="contact@aaamx.org"),
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
